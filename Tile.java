@@ -2,12 +2,37 @@ package test;
 
 
 public class Tile {
-    final public int value;
+    final public int score;
     final public char letter;
 
     private Tile(char letter) {
         this.letter = letter;
-        this.value = getValueFromLetter(letter);
+        this.score = getValueFromLetter(letter);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + score;
+        result = prime * result + letter;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Tile other = (Tile) obj;
+        if (score != other.score)
+            return false;
+        if (letter != other.letter)
+            return false;
+        return true;
     }
 
     private int getValueFromLetter(char letter) {
@@ -27,41 +52,16 @@ public class Tile {
             case 'Q', 'Z':
                 return 10;
             default:
-                return 0; // or any other default value you want
+                return 0;
         }
     }
     public class Bag {
         int numOfTiles[];
+        int quantities[];
         Tile letters[];
 
         public Bag(){
-            numofTiles = new int[26];
-            numofTiles[0] = 1;
-            numofTiles[1] = 3;
-            numofTiles[2] = 3;
-            numofTiles[3] = 2;
-            numofTiles[4] = 1;
-            numofTiles[5] = 4;
-            numofTiles[6] = 2;
-            numofTiles[7] = 4;
-            numofTiles[8] = 1;
-            numofTiles[9] = 8;
-            numofTiles[10] = 5;
-            numofTiles[11] = 1;
-            numofTiles[12] = 3;
-            numofTiles[13] = 1;
-            numofTiles[14] = 1;
-            numofTiles[15] = 3;
-            numofTiles[16] = 10;
-            numofTiles[17] = 1;
-            numofTiles[18] = 1;
-            numofTiles[19] = 1;
-            numofTiles[20] = 1;
-            numofTiles[21] = 4;
-            numofTiles[22] = 4;
-            numofTiles[23] = 8;
-            numofTiles[24] = 4;
-            numofTiles[25] = 10;
+            numOfTiles = new int[]{1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,1,10};
 
             letters = new Tile[26];
             letters[0] = new Tile('A');
