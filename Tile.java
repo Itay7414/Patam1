@@ -101,23 +101,48 @@ public class Tile {
             tiles[25] = new Tile('Z');
         }
 
-        public getRand(){
-            
+        public Tile getRand() {
+            int randomNumber;
+            do {
+                randomNumber = rand.nextInt(26); // Generate a random number between 0 and 25 (inclusive)
+            } while (quantities[randomNumber] == 0); // Keep generating a new random number until a non-zero quantity is found
+            quantities[randomNumber]--;
+            return tiles[randomNumber];
         }
 
-        public getTile(char tile)
-        {
-
+        public Tile getTile(char tile) {
+            if (tile < 'A' || tile > 'Z') {
+                return null; // Return null for invalid input
+            }
+            int index = tile - 'A';
+            if (quantities[index] == 0) {
+                return null;
+            }
+            quantities[index]--;
+            return tiles[index];
         }
 
-        public put(char tile)
-        {
-            
+        public void put(Tile tile) {
+            int index = tile.letter - 'A';
+            if (quantities[index] < maxQuantites[index]) {
+                quantities[index]++;
+            }
         }
         
-        public getQuantities()
+        public int[] getQuantities()
         {
-            
+            return quantities.clone();
+        }
+        public int size() {
+            return this.size;
+        }
+        public static Bag getBag()
+        {
+            if (bag == null) {
+                bag = new Bag();
+                return bag;
+            }
+            return bag;
         }
     }
 }
