@@ -20,31 +20,33 @@ public class Board {
         int col = word.getCol();
         boolean vertical = word.getVertical();
 
-        if (row < 0 || col < 0) {
+        if (row < 0 || col < 0 || row >= 15 || col >= 15) {
             return false;
         }
 
         if (vertical) {
-            if (row >= 15 || row + word.tiles.length > 15) {
+            if (row + word.tiles.length > 15) {
                 return false;
             }
             for (int r = row; r < row + word.tiles.length; r++) {
-                if (word.tiles[r - row] == null) {
+                Tile tile = word.tiles[r - row];
+                if (tile == null) {
                     continue;
                 }
-                if (tiles[r][col] != null && tiles[r][col] != word.tiles[r - row]) {
+                if (tiles[r][col] != null && tiles[r][col] != tile) {
                     return false;
                 }
             }
         } else {
-            if (col >= 15 || col + word.tiles.length > 15) {
+            if (col + word.tiles.length > 15) {
                 return false;
             }
             for (int c = col; c < col + word.tiles.length; c++) {
-                if (word.tiles[c - col] == null) {
+                Tile tile = word.tiles[c - col];
+                if (tile == null) {
                     continue;
                 }
-                if (tiles[row][c] != null && tiles[row][c] != word.tiles[c - col]) {
+                if (tiles[row][c] != null && tiles[row][c] != tile) {
                     return false;
                 }
             }
