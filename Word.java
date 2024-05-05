@@ -7,9 +7,12 @@ public class Word {
     int row, col;
     boolean vertical; // True = vertical, False = horizontal
 
-    public Word()
+    public Word(Tile[] tiles, int row, int col, boolean vertical)
     {
-
+        this.tiles = tiles.clone();
+        this.row = row;
+        this.col = col;
+        this.vertical = vertical;
     }
 
     public int getRow() {
