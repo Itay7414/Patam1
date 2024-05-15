@@ -58,7 +58,7 @@ public class MainTrain {
 		
 		Bag bag = Bag.getBag();
 		Tile[] ts=new Tile[10];
-		for(int i=0;i<ts.length;i++) 
+		for(int i=0;i<ts.length;i++)
 			ts[i]=bag.getRand();
 		
 		Word w0=new Word(ts,0,6,true);

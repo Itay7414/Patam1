@@ -27,6 +27,9 @@ public class Word {
         return this.vertical;
     }
 
+    public Tile[] getTiles(){
+        return tiles;
+    }
     @Override
     public int hashCode() {
         final int prime = 31;
